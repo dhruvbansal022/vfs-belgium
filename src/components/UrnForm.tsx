@@ -15,21 +15,21 @@ const UrnForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6">
-      <div className="flex w-full max-w-md">
+    <form onSubmit={handleSubmit} className="w-full">
+      <div className="flex flex-col w-full gap-3">
         <input
           type="text"
-          placeholder="URN"
+          placeholder="Enter your URN"
           value={urn}
           onChange={(e) => setUrn(e.target.value)}
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-1 focus:ring-vfs-blue"
+          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-vfs-blue"
           required
         />
         <button
           type="submit"
-          className="bg-vfs-blue text-white px-6 py-2 rounded-r-md font-medium"
+          className="w-full bg-vfs-blue text-white px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition-colors"
         >
-          Go
+          Verify Now
         </button>
       </div>
     </form>

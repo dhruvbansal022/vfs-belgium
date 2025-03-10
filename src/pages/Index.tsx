@@ -14,9 +14,9 @@ const Index = () => {
       </header>
       
       <main className="container mx-auto px-4 py-8">
-        <div className="grid md:grid-cols-2 gap-16">
-          <div>
-            <h1 className="text-3xl font-semibold text-gray-800 mb-4">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="flex flex-col">
+            <h1 className="text-2xl font-semibold text-gray-800 mb-4">
               Bank account verification for seamless Visa processing in Malta
             </h1>
             
@@ -32,13 +32,7 @@ const Index = () => {
               DIRO <a href="#" className="text-vfs-lightblue hover:underline">Trust Center</a>.
             </p>
             
-            <UrnForm />
-          </div>
-          
-          <div>
-            <FaqAccordion />
-            
-            <div className="mt-8">
+            <div className="mt-auto">
               <p className="text-gray-600">
                 Learn more about DIRO's <a href="#" className="text-vfs-lightblue hover:underline">bank</a> verification solutions.
               </p>
@@ -48,6 +42,20 @@ const Index = () => {
                 <a href="#" className="text-vfs-lightblue hover:underline">Privacy Policy</a>
               </div>
             </div>
+          </div>
+          
+          <div className="flex flex-col justify-center items-center">
+            <div className="w-full max-w-md p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+              <h2 className="text-xl font-medium text-gray-800 mb-4">Enter your URN</h2>
+              <p className="text-gray-600 mb-4">
+                Please enter your Unique Reference Number (URN) to proceed with the verification process.
+              </p>
+              <UrnForm />
+            </div>
+          </div>
+          
+          <div>
+            <FaqAccordion />
           </div>
         </div>
       </main>
