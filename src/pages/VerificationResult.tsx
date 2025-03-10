@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import VfsLogo from '../components/VfsLogo';
+import FaqAccordion from '../components/FaqAccordion';
 
 const VerificationResult = () => {
   return (
@@ -33,11 +34,34 @@ const VerificationResult = () => {
           </div>
           
           <div className="flex flex-col items-center justify-center space-y-6">
-            <button
-              className="w-full max-w-md bg-[#0e3b7b] text-white px-6 py-4 rounded-md font-medium hover:bg-opacity-90 transition-colors"
-            >
-              Bank account verification
-            </button>
+            {/* Verification Widget */}
+            <div className="w-full max-w-md">
+              <div 
+                id="verification-widget-container"
+                className="w-full overflow-hidden rounded-md shadow-md"
+                style={{ minHeight: "200px" }}
+              >
+                <iframe 
+                  src="about:blank" 
+                  id="verification-iframe"
+                  className="w-full h-full border-0"
+                  style={{ minHeight: "200px" }}
+                />
+              </div>
+              <script dangerouslySetInnerHTML={{
+                __html: `
+                  document.addEventListener('DOMContentLoaded', () => {
+                    // This would be replaced with the actual widget initialization code
+                    const iframe = document.getElementById('verification-iframe');
+                    if (iframe && iframe.contentWindow) {
+                      iframe.contentWindow.document.open();
+                      iframe.contentWindow.document.write('<html><body style="margin:0;padding:20px;font-family:Arial,sans-serif;background:#f9f9f9;"><div style="text-align:center;padding:20px;background:white;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1);"><h3 style="color:#0e3b7b;margin-bottom:15px;">DIRO Verification</h3><p style="margin-bottom:20px;">Select your bank to begin verification</p><select style="width:100%;padding:10px;margin-bottom:15px;border:1px solid #ddd;border-radius:4px;"><option>Select your bank</option><option>Bank of Malta</option><option>HSBC Malta</option><option>BOV</option></select><button style="background:#0e3b7b;color:white;border:none;padding:10px 20px;border-radius:4px;cursor:pointer;width:100%;">Start Verification</button></div></body></html>');
+                      iframe.contentWindow.document.close();
+                    }
+                  });
+                `
+              }} />
+            </div>
             
             <button
               className="w-full max-w-md border-2 border-[#0e3b7b] text-[#0e3b7b] px-6 py-4 rounded-md font-medium hover:bg-gray-50 transition-colors"
@@ -52,36 +76,7 @@ const VerificationResult = () => {
           </div>
           
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Frequently asked questions</h2>
-            <div className="space-y-4">
-              <div className="border-b pb-4">
-                <div className="flex items-center">
-                  <div className="text-[#0e3b7b] mr-3 text-2xl">+</div>
-                  <h3 className="text-lg font-medium text-gray-800">What information will be shared?</h3>
-                </div>
-              </div>
-              
-              <div className="border-b pb-4">
-                <div className="flex items-center">
-                  <div className="text-[#0e3b7b] mr-3 text-2xl">+</div>
-                  <h3 className="text-lg font-medium text-gray-800">How does my password remain private?</h3>
-                </div>
-              </div>
-              
-              <div className="border-b pb-4">
-                <div className="flex items-center">
-                  <div className="text-[#0e3b7b] mr-3 text-2xl">+</div>
-                  <h3 className="text-lg font-medium text-gray-800">Why should I trust DIRO?</h3>
-                </div>
-              </div>
-              
-              <div className="border-b pb-4">
-                <div className="flex items-center">
-                  <div className="text-[#0e3b7b] mr-3 text-2xl">+</div>
-                  <h3 className="text-lg font-medium text-gray-800">How DIRO creates a new global standard?</h3>
-                </div>
-              </div>
-            </div>
+            <FaqAccordion />
             
             <div className="mt-8">
               <p className="text-gray-600">
