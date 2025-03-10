@@ -41,15 +41,7 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="flex flex-col justify-center items-center">
-            <div className="w-full max-w-md p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
-              <h2 className="font-medium text-gray-800 mb-4 text-lg">Enter your URN</h2>
-              <p className="text-gray-600 mb-4 text-base">
-                Please enter your Unique Reference Number (URN) to proceed with the verification process.
-              </p>
-              <UrnForm />
-            </div>
-          </div>
+          
           
           <div>
             <FaqAccordion />
