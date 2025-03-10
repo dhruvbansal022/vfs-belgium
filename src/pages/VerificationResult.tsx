@@ -1,74 +1,131 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import VfsLogo from '../components/VfsLogo';
 import FaqAccordion from '../components/FaqAccordion';
+import { useToast } from "@/components/ui/use-toast";
 
 const VerificationResult = () => {
-  const widgetContainerRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
+  const [widgetLoaded, setWidgetLoaded] = useState(false);
+  const [widgetError, setWidgetError] = useState<string | null>(null);
 
   useEffect(() => {
-    // First load the CSS
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://capturev2.diro.io/directlink-staging/stylesSelectLink.css';
-    document.head.appendChild(link);
+    let isMounted = true;
     
-    // Then load the script
-    const script = document.createElement('script');
-    script.src = 'https://capturev2.diro.io/directlink/diroWidgetSelectLinkProd.js';
-    script.async = true;
-    
-    // Initialize the widget after the script has loaded
-    script.onload = () => {
-      // Allow some time for the script to fully initialize
-      setTimeout(() => {
-        const container = document.getElementById('diro-widget-container');
-        if (window.initializeDiroWidget && container) {
-          try {
-            console.log("Initializing DIRO widget with container:", container);
-            window.initializeDiroWidget(
-              container,
-              {
-                targetUrl: "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-48sB&trackid=",
-                allowRedirection: true,
-                buttonText: "Start verification",
-                openWith: "",
-                containerStyles: {
-                  backgroundColor: "#f0f0f0",
-                  padding: "20px",
-                  borderRadius: "10px",
-                },
-                buttonStyles: {
-                  fontSize: "16px",
-                  borderRadius: "12px",
-                  width: "300px",
-                },
-              }
-            );
-            console.log("DIRO widget initialized successfully");
-          } catch (error) {
-            console.error("Error initializing DIRO widget:", error);
-          }
-        } else {
-          console.error("Could not initialize DIRO widget - missing container or initialization function");
+    const loadWidget = async () => {
+      try {
+        // First load the CSS
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://capturev2.diro.io/directlink-staging/stylesSelectLink.css';
+        document.head.appendChild(link);
+        
+        // Then load the script
+        const script = document.createElement('script');
+        script.src = 'https://capturev2.diro.io/directlink/diroWidgetSelectLinkProd.js';
+        script.async = true;
+        
+        // Create a promise to handle script loading
+        const scriptLoaded = new Promise((resolve, reject) => {
+          script.onload = resolve;
+          script.onerror = (e) => reject(new Error('Failed to load DIRO widget script'));
+        });
+        
+        // Append script to body
+        document.body.appendChild(script);
+        
+        // Wait for script to load
+        await scriptLoaded;
+        
+        // Allow time for script initialization
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Initialize widget
+        if (isMounted) {
+          initializeDiroWidget();
         }
-      }, 500); // Give a small delay to ensure everything is loaded
+      } catch (error) {
+        console.error('Error loading DIRO widget:', error);
+        if (isMounted) {
+          setWidgetError('Failed to load verification widget. Please try again later.');
+          toast({
+            title: "Widget Error",
+            description: "Failed to load verification widget. Please refresh the page or try again later.",
+            variant: "destructive"
+          });
+        }
+      }
     };
     
-    // Append the script to the body
-    document.body.appendChild(script);
-    
-    // Cleanup function to remove script and link tags when component unmounts
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
+    const initializeDiroWidget = () => {
+      const container = document.getElementById('diro-widget-container');
+      
+      if (window.initializeDiroWidget && container) {
+        try {
+          console.log("Initializing DIRO widget with container:", container);
+          
+          window.initializeDiroWidget(
+            container,
+            {
+              targetUrl: "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-48sB&trackid=",
+              allowRedirection: true,
+              buttonText: "Start verification",
+              openWith: "",
+              containerStyles: {
+                backgroundColor: "#f0f0f0",
+                padding: "20px",
+                borderRadius: "10px",
+              },
+              buttonStyles: {
+                fontSize: "16px",
+                borderRadius: "12px",
+                width: "300px",
+              },
+            }
+          );
+          
+          console.log("DIRO widget initialized successfully");
+          setWidgetLoaded(true);
+        } catch (error) {
+          console.error("Error initializing DIRO widget:", error);
+          setWidgetError('Error initializing verification widget. Please try again later.');
+          toast({
+            title: "Widget Error",
+            description: "Error initializing verification widget. Please try again later.",
+            variant: "destructive"
+          });
+        }
+      } else {
+        console.error("Could not initialize DIRO widget - missing container or initialization function");
+        setWidgetError('Verification widget could not be initialized. Please try again later.');
       }
-      if (document.head.contains(link)) {
+    };
+    
+    loadWidget();
+    
+    // Cleanup function
+    return () => {
+      isMounted = false;
+      const link = document.querySelector('link[href="https://capturev2.diro.io/directlink-staging/stylesSelectLink.css"]');
+      const script = document.querySelector('script[src="https://capturev2.diro.io/directlink/diroWidgetSelectLinkProd.js"]');
+      
+      if (link && document.head.contains(link)) {
         document.head.removeChild(link);
       }
+      
+      if (script && document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
-  }, []);
+  }, [toast]);
+
+  const handleGetSupport = () => {
+    toast({
+      title: "Support Request",
+      description: "Our support team has been notified and will contact you shortly.",
+    });
+  };
 
   return (
     <div className="min-h-screen">
@@ -101,12 +158,35 @@ const VerificationResult = () => {
           <div className="flex flex-col items-center justify-center space-y-6">
             {/* Verification Widget */}
             <div className="w-full max-w-md">
-              {/* DIRO Widget Container - Using id as in the HTML example */}
-              <div className="diro-widget" id="diro-widget-container"></div>
+              {widgetError ? (
+                <div className="bg-red-50 border border-red-200 rounded-md p-4 text-center">
+                  <p className="text-red-600">{widgetError}</p>
+                  <button 
+                    onClick={() => window.location.reload()}
+                    className="mt-4 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors"
+                  >
+                    Reload page
+                  </button>
+                </div>
+              ) : (
+                <div 
+                  className="diro-widget w-full" 
+                  id="diro-widget-container"
+                  style={{ minHeight: "200px", display: "flex", justifyContent: "center", alignItems: "center" }}
+                >
+                  {!widgetLoaded && (
+                    <div className="text-center py-8">
+                      <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+                      <p className="mt-2 text-gray-600">Loading verification widget...</p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
             
             <button
               className="w-full max-w-md border-2 border-[#0e3b7b] text-[#0e3b7b] px-6 py-4 rounded-md font-medium hover:bg-gray-50 transition-colors"
+              onClick={handleGetSupport}
             >
               Get support
             </button>
