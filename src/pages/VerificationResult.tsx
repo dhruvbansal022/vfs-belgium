@@ -8,40 +8,52 @@ const VerificationResult = () => {
   const widgetContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Create a script element to load the DIRO widget JS
-    const script = document.createElement('script');
-    script.src = 'https://capturev2.diro.io/directlink/diroWidgetSelectLinkProd.js';
-    script.async = true;
-    
-    // Add the CSS for the DIRO widget
+    // First load the CSS
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = 'https://capturev2.diro.io/directlink-staging/stylesSelectLink.css';
     document.head.appendChild(link);
     
-    // Initialize the widget once the script is loaded
+    // Then load the script
+    const script = document.createElement('script');
+    script.src = 'https://capturev2.diro.io/directlink/diroWidgetSelectLinkProd.js';
+    script.async = true;
+    
+    // Initialize the widget after the script has loaded
     script.onload = () => {
-      if (window.initializeDiroWidget && widgetContainerRef.current) {
-        window.initializeDiroWidget(
-          widgetContainerRef.current,
-          {
-            targetUrl: "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-48sB&trackid=",
-            allowRedirection: true,
-            buttonText: "Start verification",
-            openWith: "",
-            containerStyles: {
-              backgroundColor: "#f0f0f0",
-              padding: "20px",
-              borderRadius: "10px",
-            },
-            buttonStyles: {
-              fontSize: "16px",
-              borderRadius: "12px",
-              width: "300px",
-            },
+      // Allow some time for the script to fully initialize
+      setTimeout(() => {
+        const container = document.getElementById('diro-widget-container');
+        if (window.initializeDiroWidget && container) {
+          try {
+            console.log("Initializing DIRO widget with container:", container);
+            window.initializeDiroWidget(
+              container,
+              {
+                targetUrl: "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-48sB&trackid=",
+                allowRedirection: true,
+                buttonText: "Start verification",
+                openWith: "",
+                containerStyles: {
+                  backgroundColor: "#f0f0f0",
+                  padding: "20px",
+                  borderRadius: "10px",
+                },
+                buttonStyles: {
+                  fontSize: "16px",
+                  borderRadius: "12px",
+                  width: "300px",
+                },
+              }
+            );
+            console.log("DIRO widget initialized successfully");
+          } catch (error) {
+            console.error("Error initializing DIRO widget:", error);
           }
-        );
-      }
+        } else {
+          console.error("Could not initialize DIRO widget - missing container or initialization function");
+        }
+      }, 500); // Give a small delay to ensure everything is loaded
     };
     
     // Append the script to the body
@@ -89,8 +101,8 @@ const VerificationResult = () => {
           <div className="flex flex-col items-center justify-center space-y-6">
             {/* Verification Widget */}
             <div className="w-full max-w-md">
-              {/* DIRO Widget Container - Using ref instead of id */}
-              <div className="diro-widget" ref={widgetContainerRef}></div>
+              {/* DIRO Widget Container - Using id as in the HTML example */}
+              <div className="diro-widget" id="diro-widget-container"></div>
             </div>
             
             <button
