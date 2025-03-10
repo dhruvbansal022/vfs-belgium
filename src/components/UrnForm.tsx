@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "@/components/ui/use-toast";
 
 const UrnForm = () => {
   const [urn, setUrn] = useState('');
@@ -9,8 +10,14 @@ const UrnForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (urn.trim()) {
-      // Pass the URN to the verification result page
-      navigate(`/verification-result?urn=${encodeURIComponent(urn)}`);
+      // Show a toast notification
+      toast({
+        title: "Verification initiated",
+        description: "Redirecting to verification page...",
+      });
+      
+      // Navigate to the verification result page
+      navigate('/verification-result');
     }
   };
 

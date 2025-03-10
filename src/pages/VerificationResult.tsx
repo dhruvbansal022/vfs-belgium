@@ -1,35 +1,9 @@
 
-import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import VfsLogo from '../components/VfsLogo';
-import { CheckCircle, XCircle, Loader2 } from 'lucide-react';
 
 const VerificationResult = () => {
-  const location = useLocation();
-  const [loading, setLoading] = useState(true);
-  const [success, setSuccess] = useState(false);
-  const [urn, setUrn] = useState('');
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const urnParam = params.get('urn');
-    
-    if (urnParam) {
-      setUrn(urnParam);
-      
-      // Simulate verification process
-      const timer = setTimeout(() => {
-        setLoading(false);
-        // For demo purposes, URNs starting with "A" will succeed, others will fail
-        setSuccess(urnParam.toUpperCase().startsWith('A'));
-      }, 2000);
-      
-      return () => clearTimeout(timer);
-    } else {
-      setLoading(false);
-    }
-  }, [location]);
-
   return (
     <div className="min-h-screen">
       <header className="border-b border-gray-200 py-4">
@@ -38,71 +12,88 @@ const VerificationResult = () => {
         </div>
       </header>
       
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-2xl mx-auto">
-          <h1 className="text-3xl font-semibold text-gray-800 mb-8 text-center">
-            Bank Account Verification
-          </h1>
-          
-          <div className="bg-white shadow-md rounded-lg p-8">
-            {!urn ? (
-              <div className="text-center">
-                <XCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-                <h2 className="text-xl font-medium text-gray-800 mb-4">Missing URN</h2>
-                <p className="text-gray-600 mb-6">
-                  No reference number was provided. Please return to the verification page.
-                </p>
-                <Link 
-                  to="/" 
-                  className="bg-vfs-blue text-white px-6 py-2 rounded-md font-medium inline-block"
-                >
-                  Back to Verification
-                </Link>
-              </div>
-            ) : loading ? (
-              <div className="text-center py-10">
-                <Loader2 className="h-16 w-16 text-vfs-blue mx-auto mb-4 animate-spin" />
-                <h2 className="text-xl font-medium text-gray-800 mb-4">Verifying Your Bank Account</h2>
-                <p className="text-gray-600">
-                  Please wait while we verify your bank account with reference number {urn}...
-                </p>
-              </div>
-            ) : success ? (
-              <div className="text-center">
-                <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                <h2 className="text-xl font-medium text-gray-800 mb-4">Verification Successful</h2>
-                <p className="text-gray-600 mb-6">
-                  Your bank account with reference number {urn} has been successfully verified.
-                  Your visa application process can now proceed.
-                </p>
-                <Link 
-                  to="/" 
-                  className="bg-vfs-blue text-white px-6 py-2 rounded-md font-medium inline-block"
-                >
-                  Back to Home
-                </Link>
-              </div>
-            ) : (
-              <div className="text-center">
-                <XCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-                <h2 className="text-xl font-medium text-gray-800 mb-4">Verification Failed</h2>
-                <p className="text-gray-600 mb-6">
-                  We couldn't verify the bank account with reference number {urn}.
-                  Please check your information and try again.
-                </p>
-                <Link 
-                  to="/" 
-                  className="bg-vfs-blue text-white px-6 py-2 rounded-md font-medium inline-block"
-                >
-                  Try Again
-                </Link>
-              </div>
-            )}
+      <main className="container mx-auto px-4 py-8">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="flex flex-col">
+            <h1 className="text-2xl font-semibold text-gray-800 mb-4">
+              Bank account verification for seamless Visa processing in Malta
+            </h1>
+            
+            <p className="text-gray-600 mb-6">
+              To ensure a seamless Visa processing experience and reduce the risk of financial discrepancies, 
+              VFS Global requires applicants to verify their bank account statement. This step guarantees 
+              timely and accurate financial transactions related to your Visa application.
+            </p>
+            
+            <p className="text-gray-600 mb-6">
+              VFS Global partners with <a href="#" className="text-vfs-blue hover:underline">DIRO</a> for this process, 
+              the leading provider of bank verification solutions trusted by F500 and Tier 1 global banks. Visit 
+              DIRO <a href="#" className="text-vfs-blue hover:underline">Trust Center</a>.
+            </p>
           </div>
           
-          <p className="text-gray-500 text-sm text-center mt-8">
-            For assistance, please contact VFS Global support at support@vfsglobal.com
-          </p>
+          <div className="flex flex-col items-center justify-center space-y-6">
+            <button
+              className="w-full max-w-md bg-[#0e3b7b] text-white px-6 py-4 rounded-md font-medium hover:bg-opacity-90 transition-colors"
+            >
+              Bank account verification
+            </button>
+            
+            <button
+              className="w-full max-w-md border-2 border-[#0e3b7b] text-[#0e3b7b] px-6 py-4 rounded-md font-medium hover:bg-gray-50 transition-colors"
+            >
+              Get support
+            </button>
+            
+            <div className="mt-4 flex items-center">
+              <span className="text-gray-600 mr-2">Powered by</span>
+              <span className="font-semibold">DIRO</span>
+            </div>
+          </div>
+          
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Frequently asked questions</h2>
+            <div className="space-y-4">
+              <div className="border-b pb-4">
+                <div className="flex items-center">
+                  <div className="text-[#0e3b7b] mr-3 text-2xl">+</div>
+                  <h3 className="text-lg font-medium text-gray-800">What information will be shared?</h3>
+                </div>
+              </div>
+              
+              <div className="border-b pb-4">
+                <div className="flex items-center">
+                  <div className="text-[#0e3b7b] mr-3 text-2xl">+</div>
+                  <h3 className="text-lg font-medium text-gray-800">How does my password remain private?</h3>
+                </div>
+              </div>
+              
+              <div className="border-b pb-4">
+                <div className="flex items-center">
+                  <div className="text-[#0e3b7b] mr-3 text-2xl">+</div>
+                  <h3 className="text-lg font-medium text-gray-800">Why should I trust DIRO?</h3>
+                </div>
+              </div>
+              
+              <div className="border-b pb-4">
+                <div className="flex items-center">
+                  <div className="text-[#0e3b7b] mr-3 text-2xl">+</div>
+                  <h3 className="text-lg font-medium text-gray-800">How DIRO creates a new global standard?</h3>
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-8">
+              <p className="text-gray-600">
+                Learn more about DIRO's <a href="#" className="text-[#0e3b7b] hover:underline">bank</a> verification solutions.
+              </p>
+              
+              <div className="mt-4">
+                <a href="#" className="text-[#0e3b7b] hover:underline mr-4">Terms of Use</a>
+                <a href="#" className="text-[#0e3b7b] hover:underline">Privacy Policy</a>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </div>
