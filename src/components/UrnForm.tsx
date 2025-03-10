@@ -5,20 +5,37 @@ import { toast } from "@/components/ui/use-toast";
 
 const UrnForm = () => {
   const [urn, setUrn] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (urn.trim()) {
-      // Show a toast notification
+    
+    if (!urn.trim()) {
       toast({
-        title: "Verification initiated",
-        description: "Redirecting to verification page...",
+        title: "Error",
+        description: "Please enter a valid URN",
+        variant: "destructive",
       });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    // Show a toast notification
+    toast({
+      title: "Verification initiated",
+      description: "Redirecting to verification page...",
+    });
+    
+    // Add a slight delay before navigation to ensure toast is visible
+    setTimeout(() => {
+      // Store the URN in session storage so it can be accessed on the verification page
+      sessionStorage.setItem('userUrn', urn);
       
       // Navigate to the verification result page
       navigate('/verification-result');
-    }
+    }, 500);
   };
 
   return (
@@ -31,12 +48,14 @@ const UrnForm = () => {
           onChange={(e) => setUrn(e.target.value)}
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-vfs-blue"
           required
+          disabled={isSubmitting}
         />
         <button
           type="submit"
-          className="w-full bg-vfs-blue text-white px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition-colors"
+          className="w-full bg-vfs-blue text-white px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={isSubmitting}
         >
-          Verify Now
+          {isSubmitting ? 'Please wait...' : 'Verify Now'}
         </button>
       </div>
     </form>
