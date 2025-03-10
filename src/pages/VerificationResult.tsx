@@ -1,10 +1,54 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import VfsLogo from '../components/VfsLogo';
 import FaqAccordion from '../components/FaqAccordion';
 
 const VerificationResult = () => {
+  useEffect(() => {
+    // Load the DIRO widget JS script after component mounts
+    const script = document.createElement('script');
+    script.src = 'https://capturev2.diro.io/directlink/diroWidgetSelectLinkProd.js';
+    script.async = true;
+    script.onload = () => {
+      // Initialize the widget once the script is loaded
+      if (window.initializeDiroWidget && document.getElementById('diro-widget-container')) {
+        window.initializeDiroWidget(
+          document.getElementById('diro-widget-container'),
+          {
+            targetUrl: "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-48sB&trackid=",
+            allowRedirection: true,
+            buttonText: "Start verification",
+            openWith: "",
+            containerStyles: {
+              backgroundColor: "#f0f0f0",
+              padding: "20px",
+              borderRadius: "10px",
+            },
+            buttonStyles: {
+              fontSize: "16px",
+              borderRadius: "12px",
+              width: "300px",
+            },
+          }
+        );
+      }
+    };
+    document.body.appendChild(script);
+
+    // Load the DIRO widget CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://capturev2.diro.io/directlink-staging/stylesSelectLink.css';
+    document.head.appendChild(link);
+
+    // Cleanup
+    return () => {
+      document.body.removeChild(script);
+      document.head.removeChild(link);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
       <header className="border-b border-gray-200 py-4">
@@ -36,31 +80,8 @@ const VerificationResult = () => {
           <div className="flex flex-col items-center justify-center space-y-6">
             {/* Verification Widget */}
             <div className="w-full max-w-md">
-              <div 
-                id="verification-widget-container"
-                className="w-full overflow-hidden rounded-md shadow-md"
-                style={{ minHeight: "200px" }}
-              >
-                <iframe 
-                  src="about:blank" 
-                  id="verification-iframe"
-                  className="w-full h-full border-0"
-                  style={{ minHeight: "200px" }}
-                />
-              </div>
-              <script dangerouslySetInnerHTML={{
-                __html: `
-                  document.addEventListener('DOMContentLoaded', () => {
-                    // This would be replaced with the actual widget initialization code
-                    const iframe = document.getElementById('verification-iframe');
-                    if (iframe && iframe.contentWindow) {
-                      iframe.contentWindow.document.open();
-                      iframe.contentWindow.document.write('<html><body style="margin:0;padding:20px;font-family:Arial,sans-serif;background:#f9f9f9;"><div style="text-align:center;padding:20px;background:white;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1);"><h3 style="color:#0e3b7b;margin-bottom:15px;">DIRO Verification</h3><p style="margin-bottom:20px;">Select your bank to begin verification</p><select style="width:100%;padding:10px;margin-bottom:15px;border:1px solid #ddd;border-radius:4px;"><option>Select your bank</option><option>Bank of Malta</option><option>HSBC Malta</option><option>BOV</option></select><button style="background:#0e3b7b;color:white;border:none;padding:10px 20px;border-radius:4px;cursor:pointer;width:100%;">Start Verification</button></div></body></html>');
-                      iframe.contentWindow.document.close();
-                    }
-                  });
-                `
-              }} />
+              {/* DIRO Widget Container */}
+              <div id="diro-widget-container" className="w-full rounded-md overflow-hidden"></div>
             </div>
             
             <button
