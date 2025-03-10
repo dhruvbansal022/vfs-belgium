@@ -12,9 +12,10 @@ const VerificationResult = () => {
     script.async = true;
     script.onload = () => {
       // Initialize the widget once the script is loaded
-      if (window.initializeDiroWidget && document.getElementById('diro-widget-container')) {
+      const container = document.getElementById('diro-widget-container');
+      if (window.initializeDiroWidget && container) {
         window.initializeDiroWidget(
-          document.getElementById('diro-widget-container'),
+          container,
           {
             targetUrl: "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-48sB&trackid=",
             allowRedirection: true,
