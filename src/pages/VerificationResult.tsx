@@ -1,21 +1,29 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import VfsLogo from '../components/VfsLogo';
 import FaqAccordion from '../components/FaqAccordion';
 
 const VerificationResult = () => {
+  const widgetContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    // Load the DIRO widget JS script after component mounts
+    // Create a script element to load the DIRO widget JS
     const script = document.createElement('script');
     script.src = 'https://capturev2.diro.io/directlink/diroWidgetSelectLinkProd.js';
     script.async = true;
+    
+    // Add the CSS for the DIRO widget
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://capturev2.diro.io/directlink-staging/stylesSelectLink.css';
+    document.head.appendChild(link);
+    
+    // Initialize the widget once the script is loaded
     script.onload = () => {
-      // Initialize the widget once the script is loaded
-      const container = document.getElementById('diro-widget-container');
-      if (window.initializeDiroWidget && container) {
+      if (window.initializeDiroWidget && widgetContainerRef.current) {
         window.initializeDiroWidget(
-          container,
+          widgetContainerRef.current,
           {
             targetUrl: "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-48sB&trackid=",
             allowRedirection: true,
@@ -35,18 +43,18 @@ const VerificationResult = () => {
         );
       }
     };
+    
+    // Append the script to the body
     document.body.appendChild(script);
-
-    // Load the DIRO widget CSS
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://capturev2.diro.io/directlink-staging/stylesSelectLink.css';
-    document.head.appendChild(link);
-
-    // Cleanup
+    
+    // Cleanup function to remove script and link tags when component unmounts
     return () => {
-      document.body.removeChild(script);
-      document.head.removeChild(link);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+      if (document.head.contains(link)) {
+        document.head.removeChild(link);
+      }
     };
   }, []);
 
@@ -81,8 +89,8 @@ const VerificationResult = () => {
           <div className="flex flex-col items-center justify-center space-y-6">
             {/* Verification Widget */}
             <div className="w-full max-w-md">
-              {/* DIRO Widget Container */}
-              <div id="diro-widget-container" className="w-full rounded-md overflow-hidden"></div>
+              {/* DIRO Widget Container - Using ref instead of id */}
+              <div className="diro-widget" ref={widgetContainerRef}></div>
             </div>
             
             <button
