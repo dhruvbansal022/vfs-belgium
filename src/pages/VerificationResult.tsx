@@ -72,7 +72,11 @@ const VerificationResult = () => {
               allowRedirection: true,
               buttonText: "Start verification",
               openWith: "",
-              containerStyles: {},  // Remove custom container styles that were causing the error
+              containerStyles: {
+                backgroundColor: "#ffffff",  // Adding the required backgroundColor property
+                padding: "20px",            // Adding the required padding property
+                borderRadius: "12px"        // Adding the required borderRadius property
+              },
               buttonStyles: {
                 fontSize: "16px",
                 borderRadius: "12px",
