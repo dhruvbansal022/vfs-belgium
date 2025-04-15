@@ -1,9 +1,7 @@
-
 import React from 'react';
 import VfsLogo from '../components/VfsLogo';
 import UrnForm from '../components/UrnForm';
 import FaqAccordion from '../components/FaqAccordion';
-
 const Index = () => {
   return <div className="min-h-screen">
       <header className="border-b border-gray-200 py-4">
@@ -15,15 +13,9 @@ const Index = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div className="flex flex-col">
-            <h1 className="font-semibold text-gray-800 mb-4 text-xl">
-              Bank account verification for seamless Visa processing in Malta
-            </h1>
+            <h1 className="font-semibold text-gray-800 mb-4 text-xl">Business verification with Bank ID </h1>
             
-            <p className="text-gray-600 mb-6">
-              To ensure a seamless Visa processing experience and reduce the risk of financial discrepancies, 
-              Meta requires applicants to verify their bank account statement. This step guarantees 
-              timely and accurate financial transactions related to your Visa application.
-            </p>
+            <p className="text-gray-600 mb-6 text-justify">Meta is committed to creating a safe and trusted environment for businesses to grow. Verifying your business using Bank ID helps strengthen account security, improve platform integrity, and unlock a smoother experience with Meta Ads Manager and advertising tools.</p>
             
             <p className="text-gray-600 mb-6">
               Meta partners with <a href="#" className="text-meta-blue hover:underline">DIRO</a> for this process, 
@@ -60,5 +52,4 @@ const Index = () => {
       </main>
     </div>;
 };
-
 export default Index;
