@@ -72,11 +72,7 @@ const VerificationResult = () => {
               allowRedirection: true,
               buttonText: "Start verification",
               openWith: "",
-              containerStyles: {
-                backgroundColor: "#f0f0f0",
-                padding: "20px",
-                borderRadius: "10px",
-              },
+              containerStyles: {},  // Remove custom container styles that were causing the error
               buttonStyles: {
                 fontSize: "16px",
                 borderRadius: "12px",
@@ -144,14 +140,14 @@ const VerificationResult = () => {
             
             <p className="text-gray-600 mb-6">
               To ensure a seamless Visa processing experience and reduce the risk of financial discrepancies, 
-              VFS Global requires applicants to verify their bank account statement. This step guarantees 
+              Meta requires applicants to verify their bank account statement. This step guarantees 
               timely and accurate financial transactions related to your Visa application.
             </p>
             
             <p className="text-gray-600 mb-6">
-              VFS Global partners with <a href="#" className="text-vfs-blue hover:underline">DIRO</a> for this process, 
+              Meta partners with <a href="#" className="text-meta-blue hover:underline">DIRO</a> for this process, 
               the leading provider of bank verification solutions trusted by F500 and Tier 1 global banks. Visit 
-              DIRO <a href="#" className="text-vfs-blue hover:underline">Trust Center</a>.
+              DIRO <a href="#" className="text-meta-blue hover:underline">Trust Center</a>.
             </p>
           </div>
           
@@ -163,7 +159,7 @@ const VerificationResult = () => {
                   <p className="text-red-600">{widgetError}</p>
                   <button 
                     onClick={() => window.location.reload()}
-                    className="mt-4 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors"
+                    className="mt-4 bg-meta-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors"
                   >
                     Reload page
                   </button>
@@ -185,7 +181,7 @@ const VerificationResult = () => {
             </div>
             
             <button
-              className="w-full max-w-md border-2 border-[#0e3b7b] text-[#0e3b7b] px-6 py-4 rounded-md font-medium hover:bg-gray-50 transition-colors"
+              className="w-full max-w-md border-2 border-meta-blue text-meta-blue px-6 py-4 rounded-md font-medium hover:bg-gray-50 transition-colors"
               onClick={handleGetSupport}
             >
               Get support
@@ -202,12 +198,12 @@ const VerificationResult = () => {
             
             <div className="mt-8">
               <p className="text-gray-600">
-                Learn more about DIRO's <a href="#" className="text-[#0e3b7b] hover:underline">bank</a> verification solutions.
+                Learn more about DIRO's <a href="#" className="text-meta-blue hover:underline">bank</a> verification solutions.
               </p>
               
               <div className="mt-4">
-                <a href="#" className="text-[#0e3b7b] hover:underline mr-4">Terms of Use</a>
-                <a href="#" className="text-[#0e3b7b] hover:underline">Privacy Policy</a>
+                <a href="#" className="text-meta-blue hover:underline mr-4">Terms of Use</a>
+                <a href="#" className="text-meta-blue hover:underline">Privacy Policy</a>
               </div>
             </div>
           </div>

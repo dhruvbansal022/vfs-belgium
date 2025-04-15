@@ -21,24 +21,24 @@ const Index = () => {
             
             <p className="text-gray-600 mb-6">
               To ensure a seamless Visa processing experience and reduce the risk of financial discrepancies, 
-              VFS Global requires applicants to verify their bank account statement. This step guarantees 
+              Meta requires applicants to verify their bank account statement. This step guarantees 
               timely and accurate financial transactions related to your Visa application.
             </p>
             
             <p className="text-gray-600 mb-6">
-              VFS Global partners with <a href="#" className="text-vfs-lightblue hover:underline">DIRO</a> for this process, 
+              Meta partners with <a href="#" className="text-meta-blue hover:underline">DIRO</a> for this process, 
               the leading provider of bank verification solutions trusted by F500 and Tier 1 global banks. Visit 
-              DIRO <a href="#" className="text-vfs-lightblue hover:underline">Trust Center</a>.
+              DIRO <a href="#" className="text-meta-blue hover:underline">Trust Center</a>.
             </p>
             
             <div className="mt-auto">
               <p className="text-gray-600">
-                Learn more about DIRO's <a href="#" className="text-vfs-lightblue hover:underline">bank</a> verification solutions.
+                Learn more about DIRO's <a href="#" className="text-meta-blue hover:underline">bank</a> verification solutions.
               </p>
               
               <div className="mt-4">
-                <a href="#" className="text-vfs-lightblue hover:underline mr-4">Terms of Use</a>
-                <a href="#" className="text-vfs-lightblue hover:underline">Privacy Policy</a>
+                <a href="#" className="text-meta-blue hover:underline mr-4">Terms of Use</a>
+                <a href="#" className="text-meta-blue hover:underline">Privacy Policy</a>
               </div>
             </div>
           </div>

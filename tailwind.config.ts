@@ -66,6 +66,12 @@ export default {
 				vfs: {
 					blue: '#1a407a',
 					lightblue: '#2196f3',
+				},
+				meta: {
+					blue: '#1877F2',      // Meta bright blue
+					darkBlue: '#1A1F2C',  // Meta dark blue/purple
+					skyBlue: '#33C3F0',   // Meta sky blue
+					accent: '#0FA0CE',    // Meta accent blue
 				}
 			},
 			borderRadius: {
