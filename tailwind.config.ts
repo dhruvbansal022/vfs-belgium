@@ -63,13 +63,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				meta: {
-					blue: '#1877F2',
-					navy: '#1A1F2C',
-					light: '#F0F2F5',
-					gray: '#65676B',
-					purple: '#9b87f5',
-					accent: '#33C3F0',
+				vfs: {
+					blue: '#1a407a',
+					lightblue: '#2196f3',
 				}
 			},
 			borderRadius: {
