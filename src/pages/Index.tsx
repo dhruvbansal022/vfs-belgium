@@ -5,8 +5,9 @@ import UrnForm from '../components/UrnForm';
 import FaqAccordion from '../components/FaqAccordion';
 
 const Index = () => {
-  return <div className="min-h-screen">
-      <header className="border-b border-gray-200 py-4">
+  return (
+    <div className="min-h-screen bg-meta-light">
+      <header className="border-b border-gray-200 py-4 bg-white shadow-sm">
         <div className="container mx-auto px-4">
           <VfsLogo />
         </div>
@@ -15,38 +16,38 @@ const Index = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div className="flex flex-col">
-            <h1 className="font-semibold text-gray-800 mb-4 text-xl">
-              Bank account verification for seamless Visa processing in Malta
+            <h1 className="font-semibold text-meta-navy mb-4 text-xl">
+              Bank account verification for seamless Visa processing
             </h1>
             
-            <p className="text-gray-600 mb-6">
+            <p className="text-meta-gray mb-6">
               To ensure a seamless Visa processing experience and reduce the risk of financial discrepancies, 
-              VFS Global requires applicants to verify their bank account statement. This step guarantees 
+              Meta requires applicants to verify their bank account statement. This step guarantees 
               timely and accurate financial transactions related to your Visa application.
             </p>
             
-            <p className="text-gray-600 mb-6">
-              VFS Global partners with <a href="#" className="text-vfs-lightblue hover:underline">DIRO</a> for this process, 
+            <p className="text-meta-gray mb-6">
+              Meta partners with <a href="#" className="text-meta-blue hover:underline">DIRO</a> for this process, 
               the leading provider of bank verification solutions trusted by F500 and Tier 1 global banks. Visit 
-              DIRO <a href="#" className="text-vfs-lightblue hover:underline">Trust Center</a>.
+              DIRO <a href="#" className="text-meta-blue hover:underline">Trust Center</a>.
             </p>
             
             <div className="mt-auto">
-              <p className="text-gray-600">
-                Learn more about DIRO's <a href="#" className="text-vfs-lightblue hover:underline">bank</a> verification solutions.
+              <p className="text-meta-gray">
+                Learn more about DIRO's <a href="#" className="text-meta-blue hover:underline">bank</a> verification solutions.
               </p>
               
               <div className="mt-4">
-                <a href="#" className="text-vfs-lightblue hover:underline mr-4">Terms of Use</a>
-                <a href="#" className="text-vfs-lightblue hover:underline">Privacy Policy</a>
+                <a href="#" className="text-meta-blue hover:underline mr-4">Terms of Use</a>
+                <a href="#" className="text-meta-blue hover:underline">Privacy Policy</a>
               </div>
             </div>
           </div>
           
           <div className="flex flex-col justify-center items-center">
-            <div className="w-full max-w-md p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
-              <h2 className="font-medium text-gray-800 mb-4 text-lg">Enter your URN</h2>
-              <p className="text-gray-600 mb-4 text-base">
+            <div className="w-full max-w-md p-6 meta-card">
+              <h2 className="font-medium text-meta-navy mb-4 text-lg">Enter your URN</h2>
+              <p className="text-meta-gray mb-4 text-base">
                 Please enter your Unique Reference Number (URN) to proceed with the verification process.
               </p>
               <UrnForm />
@@ -58,7 +59,8 @@ const Index = () => {
           </div>
         </div>
       </main>
-    </div>;
+    </div>
+  );
 };
 
 export default Index;

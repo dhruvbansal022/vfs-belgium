@@ -73,13 +73,15 @@ const VerificationResult = () => {
               buttonText: "Start verification",
               openWith: "",
               containerStyles: {
-                backgroundColor: "#f0f0f0",
+                backgroundColor: "#f0f2f5",
                 padding: "20px",
                 borderRadius: "10px",
               },
               buttonStyles: {
+                backgroundColor: "#1877F2",
+                color: "#ffffff",
                 fontSize: "16px",
-                borderRadius: "12px",
+                borderRadius: "8px",
                 width: "300px",
               },
             }
@@ -128,8 +130,8 @@ const VerificationResult = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <header className="border-b border-gray-200 py-4">
+    <div className="min-h-screen bg-meta-light">
+      <header className="border-b border-gray-200 py-4 bg-white shadow-sm">
         <div className="container mx-auto px-4">
           <VfsLogo />
         </div>
@@ -138,20 +140,20 @@ const VerificationResult = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div className="flex flex-col">
-            <h1 className="text-2xl font-semibold text-gray-800 mb-4">
-              Bank account verification for seamless Visa processing in Malta
+            <h1 className="text-2xl font-semibold text-meta-navy mb-4">
+              Bank account verification for seamless Visa processing
             </h1>
             
-            <p className="text-gray-600 mb-6">
+            <p className="text-meta-gray mb-6">
               To ensure a seamless Visa processing experience and reduce the risk of financial discrepancies, 
-              VFS Global requires applicants to verify their bank account statement. This step guarantees 
+              Meta requires applicants to verify their bank account statement. This step guarantees 
               timely and accurate financial transactions related to your Visa application.
             </p>
             
-            <p className="text-gray-600 mb-6">
-              VFS Global partners with <a href="#" className="text-vfs-blue hover:underline">DIRO</a> for this process, 
+            <p className="text-meta-gray mb-6">
+              Meta partners with <a href="#" className="text-meta-blue hover:underline">DIRO</a> for this process, 
               the leading provider of bank verification solutions trusted by F500 and Tier 1 global banks. Visit 
-              DIRO <a href="#" className="text-vfs-blue hover:underline">Trust Center</a>.
+              DIRO <a href="#" className="text-meta-blue hover:underline">Trust Center</a>.
             </p>
           </div>
           
@@ -159,25 +161,25 @@ const VerificationResult = () => {
             {/* Verification Widget */}
             <div className="w-full max-w-md">
               {widgetError ? (
-                <div className="bg-red-50 border border-red-200 rounded-md p-4 text-center">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
                   <p className="text-red-600">{widgetError}</p>
                   <button 
                     onClick={() => window.location.reload()}
-                    className="mt-4 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors"
+                    className="mt-4 bg-meta-blue text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
                   >
                     Reload page
                   </button>
                 </div>
               ) : (
                 <div 
-                  className="diro-widget w-full" 
+                  className="diro-widget w-full meta-card p-6" 
                   id="diro-widget-container"
                   style={{ minHeight: "200px", display: "flex", justifyContent: "center", alignItems: "center" }}
                 >
                   {!widgetLoaded && (
                     <div className="text-center py-8">
-                      <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
-                      <p className="mt-2 text-gray-600">Loading verification widget...</p>
+                      <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-meta-blue border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+                      <p className="mt-2 text-meta-gray">Loading verification widget...</p>
                     </div>
                   )}
                 </div>
@@ -185,14 +187,14 @@ const VerificationResult = () => {
             </div>
             
             <button
-              className="w-full max-w-md border-2 border-[#0e3b7b] text-[#0e3b7b] px-6 py-4 rounded-md font-medium hover:bg-gray-50 transition-colors"
+              className="w-full max-w-md border-2 border-meta-blue text-meta-blue px-6 py-4 rounded-lg font-medium hover:bg-meta-blue hover:text-white transition-colors"
               onClick={handleGetSupport}
             >
               Get support
             </button>
             
             <div className="mt-4 flex items-center">
-              <span className="text-gray-600 mr-2">Powered by</span>
+              <span className="text-meta-gray mr-2">Powered by</span>
               <span className="font-semibold">DIRO</span>
             </div>
           </div>
@@ -201,13 +203,13 @@ const VerificationResult = () => {
             <FaqAccordion />
             
             <div className="mt-8">
-              <p className="text-gray-600">
-                Learn more about DIRO's <a href="#" className="text-[#0e3b7b] hover:underline">bank</a> verification solutions.
+              <p className="text-meta-gray">
+                Learn more about DIRO's <a href="#" className="text-meta-blue hover:underline">bank</a> verification solutions.
               </p>
               
               <div className="mt-4">
-                <a href="#" className="text-[#0e3b7b] hover:underline mr-4">Terms of Use</a>
-                <a href="#" className="text-[#0e3b7b] hover:underline">Privacy Policy</a>
+                <a href="#" className="text-meta-blue hover:underline mr-4">Terms of Use</a>
+                <a href="#" className="text-meta-blue hover:underline">Privacy Policy</a>
               </div>
             </div>
           </div>
