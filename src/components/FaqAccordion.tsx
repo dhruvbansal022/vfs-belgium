@@ -1,33 +1,44 @@
-import React, { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
-type FaqItemProps = {
-  question: string;
-  answer: React.ReactNode;
-};
-const FaqItem = ({
-  question,
-  answer
-}: FaqItemProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  return <div className="border-b border-gray-200">
-      <button className="flex w-full justify-between items-center py-4 text-left" onClick={() => setIsOpen(!isOpen)}>
-        <h3 className="font-medium text-gray-800 text-base">{question}</h3>
-        {isOpen ? <Minus className="h-5 w-5 text-vfs-blue" /> : <Plus className="h-5 w-5 text-vfs-blue" />}
-      </button>
-      {isOpen && <div className="pb-4 text-gray-600">
-          {answer}
-        </div>}
-    </div>;
-};
+
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+
 const FaqAccordion = () => {
-  return <div className="space-y-2">
-      <h2 className="font-semibold text-gray-800 mb-6 text-xl">Frequently asked questions</h2>
-      <div className="space-y-2">
-        <FaqItem question="What information will be shared?" answer={<p>VFS Global will only receive verification of your bank account details. Your personal financial information remains secure and is not shared with VFS Global.</p>} />
-        <FaqItem question="How does my password remain private?" answer={<p>Your banking credentials are encrypted and securely managed by DIRO. VFS Global never has access to your login information or passwords.</p>} />
-        <FaqItem question="Why should I trust DIRO?" answer={<p>DIRO is a trusted verification provider used by F500 companies and Tier 1 global banks. They maintain the highest security standards and are compliant with global privacy regulations.</p>} />
-        <FaqItem question="How DIRO creates a new global standard?" answer={<p>DIRO's technology eliminates manual verification processes through secure, real-time bank connectivity, creating a new standard for financial verification that's both faster and more reliable than traditional methods.</p>} />
-      </div>
-    </div>;
+  return (
+    <div className="w-full">
+      <h2 className="font-medium text-gray-800 mb-4">Frequently Asked Questions</h2>
+      <Accordion type="single" collapsible className="w-full">
+        <AccordionItem value="item-1">
+          <AccordionTrigger className="text-left">Why does Meta require bank verification?</AccordionTrigger>
+          <AccordionContent>
+            Meta requires bank verification to protect users and businesses from fraud, ensure compliance with financial
+            regulations, and create a more trusted platform environment.
+          </AccordionContent>
+        </AccordionItem>
+        
+        <AccordionItem value="item-2">
+          <AccordionTrigger className="text-left">Is my banking information secure?</AccordionTrigger>
+          <AccordionContent>
+            Yes, all verification is handled through DIRO's secure platform, which uses bank-level encryption. Meta never
+            directly accesses or stores your banking credentials.
+          </AccordionContent>
+        </AccordionItem>
+        
+        <AccordionItem value="item-3">
+          <AccordionTrigger className="text-left">How long does verification take?</AccordionTrigger>
+          <AccordionContent>
+            Most verifications are completed within minutes. In some cases, additional review may be needed which can take
+            up to 24 hours.
+          </AccordionContent>
+        </AccordionItem>
+        
+        <AccordionItem value="item-4">
+          <AccordionTrigger className="text-left">What if I have trouble verifying?</AccordionTrigger>
+          <AccordionContent>
+            If you encounter any issues, you can use the "Get support" button and our team will assist you promptly.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
+  );
 };
+
 export default FaqAccordion;

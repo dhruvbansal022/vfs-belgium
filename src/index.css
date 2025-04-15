@@ -94,3 +94,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Define meta-blue color directly to ensure it's accessible */
+.text-meta-blue {
+  color: #1877f2; /* Meta blue color */
+}
+
+.bg-meta-blue {
+  background-color: #1877f2; /* Meta blue color */
+}
+
+/* Fixed styling for root container to ensure content is visible */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, forwardRef, useImperativeHandle, useState } from "react";
 import "../../stylesSelectLink.css";
 
@@ -27,14 +28,6 @@ interface WidgetOptions {
   buttonClassName?: string;
 }
 
-// Instead of extending Window interface, use type assertion
-// declare global {
-//   interface Window {
-//     initializeDiroWidget: (container: HTMLElement, options: WidgetOptions) => void;
-//   }
-// }
-
-// Define ref methods type
 interface WidgetRefMethods {
   updateWidget: (data: any) => void;
   reinitialize: () => void;
@@ -44,7 +37,7 @@ interface WidgetCaptureProps {
   urn?: string;
 }
 
-export const WidgetDemo = forwardRef<WidgetRefMethods, WidgetCaptureProps>(({ urn }, ref) => {
+const WidgetDemo = forwardRef<WidgetRefMethods, WidgetCaptureProps>(({ urn }, ref) => {
   const [containerKey, setContainerKey] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const widgetInstance = useRef<WidgetInstance | null>(null);
@@ -122,19 +115,18 @@ export const WidgetDemo = forwardRef<WidgetRefMethods, WidgetCaptureProps>(({ ur
       }
 
       const targetUrl = urn
-        ? `targetUrl: "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-Z6Jc&trackid=${urn}`
+        ? `https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-Z6Jc&trackid=${urn}`
         : "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-Z6Jc&trackid=";
 
       (window as any).initializeDiroWidget(widgetContainer, {
-        targetUrl,
-
+        targetUrl: targetUrl,
         allowRedirection: true,
         buttonText: "Start verification",
         openWith: "sametab",
         containerStyles: {
-          backgroundColor: "#f0f0f0",
-          padding: "30px",
-          borderRadius: "10px",
+          backgroundColor: "#ffffff",
+          padding: "20px",
+          borderRadius: "12px"
         },
         buttonStyles: {
           fontSize: "16px",
@@ -162,7 +154,7 @@ export const WidgetDemo = forwardRef<WidgetRefMethods, WidgetCaptureProps>(({ ur
 
   return (
     <React.Fragment>
-      {!isWidgetLoaded && <div className="widget-loading">Loading Diro widget...</div>}
+      {!isWidgetLoaded && <div className="widget-loading p-4 text-center">Loading Diro widget...</div>}
 
       <div className="w-full">
         <div
@@ -170,7 +162,7 @@ export const WidgetDemo = forwardRef<WidgetRefMethods, WidgetCaptureProps>(({ ur
           className="diro-widget"
           id={`diro-widget-container-${containerKey}`}
           ref={containerRef}
-          style={{ display: isWidgetLoaded ? "block" : "none" }}
+          style={{ display: isWidgetLoaded ? "block" : "none", minHeight: "200px" }}
         />
       </div>
     </React.Fragment>
