@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import VfsLogo from "../components/VfsLogo";
 import UrnForm from "../components/UrnForm";
@@ -33,7 +32,7 @@ const Index = () => {
               Meta is committed to creating a safe and trusted environment for businesses to grow. Verifying your business helps strengthen account security, improve platform integrity, and enhance your onboarding experience with Meta.
             </p>
 
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 text-justify">
               Meta partners with{" "}
               <a href="#" className="text-meta-blue hover:underline">
                 DIRO
@@ -98,4 +97,3 @@ const Index = () => {
   );
 };
 export default Index;
-
