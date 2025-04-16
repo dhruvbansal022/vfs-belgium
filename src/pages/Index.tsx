@@ -1,8 +1,10 @@
+
 import React, { useState } from "react";
 import VfsLogo from "../components/VfsLogo";
 import UrnForm from "../components/UrnForm";
 import FaqAccordion from "../components/FaqAccordion";
 import WidgetCapture from "./widgetCapture";
+
 const Index = () => {
   const [showWidget, setShowWidget] = useState(false);
   const [urn, setUrn] = useState("");
@@ -25,12 +27,10 @@ const Index = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div className="flex flex-col">
-            <h1 className="font-semibold text-gray-800 mb-4 text-xl">Business verification with Bank ID </h1>
+            <h1 className="font-semibold text-gray-800 mb-4 text-xl">Business verification</h1>
 
             <p className="text-gray-600 mb-6 text-justify">
-              Meta is committed to creating a safe and trusted environment for businesses to grow. Verifying your business using
-              Bank ID helps strengthen account security, improve platform integrity, and unlock a smoother experience with Meta
-              Ads Manager and advertising tools.
+              Meta is committed to creating a safe and trusted environment for businesses to grow. Verifying your business helps strengthen account security, improve platform integrity, and enhance your onboarding experience with Meta.
             </p>
 
             <p className="text-gray-600 mb-6">
@@ -38,10 +38,9 @@ const Index = () => {
               <a href="#" className="text-meta-blue hover:underline">
                 DIRO
               </a>{" "}
-              for this process, the leading provider of bank verification solutions trusted by F500 and Tier 1 global banks. Visit
-              DIRO{" "}
+              for this process, the leading provider of verification solutions trusted by F500 companies, banks, and governments worldwide. Visit{" "}
               <a href="#" className="text-meta-blue hover:underline">
-                Trust Center
+                DIRO Trust Center
               </a>
               .
             </p>
@@ -99,3 +98,4 @@ const Index = () => {
   );
 };
 export default Index;
+
