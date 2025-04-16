@@ -29,7 +29,7 @@ const Index = () => {
             <h1 className="font-semibold text-gray-800 mb-4 text-xl">Business verification</h1>
 
             <p className="text-gray-600 mb-6 text-justify">
-              Meta is committed to creating a safe and trusted environment for businesses to grow. Verifying your business helps strengthen account security, improve platform integrity, and enhance your onboarding experience with Meta.
+              Meta is committed to creating a safe and trusted environment for businesses to grow. Verifying your business helps strengthen account security, improve platform integrity, and enhance your onboarding experience.
             </p>
 
             <p className="text-gray-600 mb-6 text-justify">
