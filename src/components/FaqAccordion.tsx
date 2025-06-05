@@ -7,17 +7,17 @@ const FaqAccordion = () => {
       <h2 className="font-medium text-gray-800 mb-4">Frequently Asked Questions</h2>
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
-          <AccordionTrigger className="text-left">Why does Meta require bank verification?</AccordionTrigger>
+          <AccordionTrigger className="text-left">Why does VFS Global require bank verification?</AccordionTrigger>
           <AccordionContent>
-            Meta requires bank verification to protect users and businesses from fraud, ensure compliance with financial
-            regulations, and create a more trusted platform environment.
+            VFS Global requires bank verification to protect applicants and ensure compliance with financial
+            regulations, creating a more trusted visa application process.
           </AccordionContent>
         </AccordionItem>
         
         <AccordionItem value="item-2">
           <AccordionTrigger className="text-left">Is my banking information secure?</AccordionTrigger>
           <AccordionContent>
-            Yes, all verification is handled through DIRO's secure platform, which uses bank-level encryption. Meta never
+            Yes, all verification is handled through DIRO's secure platform, which uses bank-level encryption. VFS Global never
             directly accesses or stores your banking credentials.
           </AccordionContent>
         </AccordionItem>

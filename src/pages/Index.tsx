@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import VfsLogo from "../components/VfsLogo";
 import UrnForm from "../components/UrnForm";
@@ -29,16 +30,16 @@ const Index = () => {
             <h1 className="font-semibold text-gray-800 mb-4 text-xl">Business verification</h1>
 
             <p className="text-gray-600 mb-6 text-justify">
-              Meta is committed to creating a safe and trusted environment for businesses to grow. Verifying your business helps strengthen account security, improve platform integrity, and enhance your onboarding experience.
+              VFS Global is committed to creating a safe and trusted environment for businesses to grow. Verifying your business helps strengthen account security, improve platform integrity, and enhance your onboarding experience.
             </p>
 
             <p className="text-gray-600 mb-6 text-justify">
-              Meta partners with{" "}
-              <a href="#" className="text-meta-blue hover:underline">
+              VFS Global partners with{" "}
+              <a href="#" className="text-vfs-blue hover:underline">
                 DIRO
               </a>{" "}
               for this process, the leading provider of verification solutions trusted by F500 companies, banks, and governments worldwide. Visit{" "}
-              <a href="#" className="text-meta-blue hover:underline">
+              <a href="#" className="text-vfs-blue hover:underline">
                 DIRO Trust Center
               </a>
               .
@@ -47,17 +48,17 @@ const Index = () => {
             <div className="mt-auto">
               <p className="text-gray-600">
                 Learn more about DIRO's{" "}
-                <a href="#" className="text-meta-blue hover:underline">
+                <a href="#" className="text-vfs-blue hover:underline">
                   bank
                 </a>{" "}
                 verification solutions.
               </p>
 
               <div className="mt-4">
-                <a href="#" className="text-meta-blue hover:underline mr-4">
+                <a href="#" className="text-vfs-blue hover:underline mr-4">
                   Terms of Use
                 </a>
-                <a href="#" className="text-meta-blue hover:underline">
+                <a href="#" className="text-vfs-blue hover:underline">
                   Privacy Policy
                 </a>
               </div>

@@ -14,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 214 89% 52%;    /* Meta blue */
+    --primary: 210 80% 32%;    /* VFS blue */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
@@ -23,7 +23,7 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 194 93% 50%;     /* Meta accent blue */
+    --accent: 210 80% 32%;     /* VFS blue */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -31,7 +31,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 214 89% 52%;       /* Meta blue */
+    --ring: 210 80% 32%;       /* VFS blue */
 
     --radius: 0.5rem;
 
@@ -55,7 +55,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 214 89% 52%;    /* Meta blue */
+    --primary: 210 80% 32%;    /* VFS blue */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -64,7 +64,7 @@
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 194 93% 50%;     /* Meta accent blue */
+    --accent: 210 80% 32%;     /* VFS blue */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -72,7 +72,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 214 89% 52%;       /* Meta blue */
+    --ring: 210 80% 32%;       /* VFS blue */
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -95,13 +95,13 @@
   }
 }
 
-/* Define meta-blue color directly to ensure it's accessible */
-.text-meta-blue {
-  color: #1877f2; /* Meta blue color */
+/* Define VFS blue color directly to ensure it's accessible */
+.text-vfs-blue {
+  color: #1a407a; /* VFS blue color */
 }
 
-.bg-meta-blue {
-  background-color: #1877f2; /* Meta blue color */
+.bg-vfs-blue {
+  background-color: #1a407a; /* VFS blue color */
 }
 
 /* Fixed styling for root container to ensure content is visible */
