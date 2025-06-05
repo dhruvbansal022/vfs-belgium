@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import VfsLogo from "../components/VfsLogo";
@@ -92,7 +93,7 @@ const Index = () => {
                 </>
               ) : (
                 <>
-                  <h2 className="font-medium text-gray-800 mb-4 text-lg">Select your provider</h2>
+                  <h2 className="font-medium text-gray-800 mb-4 text-lg">Fetch your original bank statement</h2>
                   <p className="text-gray-600 mb-6 text-sm leading-relaxed">Please select your bank to proceed with the verification process.</p>
                   <div className="flex flex-col align-center gap-4">
                     <WidgetCapture urn={urn} />
