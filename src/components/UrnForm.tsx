@@ -27,20 +27,19 @@ const UrnForm: React.FC<UrnFormProps> = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="urn">URN</Label>
         <Input 
           id="urn"
           type="text"
           value={urn}
           onChange={(e) => setUrn(e.target.value)}
           placeholder="Enter your URN"
-          className={error ? "border-red-500" : ""}
+          className={`h-12 ${error ? "border-red-500" : "border-gray-300"}`}
         />
         {error && <p className="text-red-500 text-sm">{error}</p>}
       </div>
       
-      <Button type="submit" className="w-full bg-meta-blue">
-        Continue
+      <Button type="submit" className="w-full bg-vfs-blue hover:bg-vfs-blue/90 h-12 text-white font-medium">
+        Verify Now
       </Button>
     </form>
   );
