@@ -1,23 +1,18 @@
-
 import React, { useState } from "react";
 import VfsLogo from "../components/VfsLogo";
 import UrnForm from "../components/UrnForm";
 import FaqAccordion from "../components/FaqAccordion";
 import WidgetCapture from "./widgetCapture";
-
 const Index = () => {
   const [showWidget, setShowWidget] = useState(false);
   const [urn, setUrn] = useState("");
-
   const handleUrnSubmit = (submittedUrn: string) => {
     console.log("URN submitted:", submittedUrn);
     sessionStorage.setItem("userUrn", submittedUrn);
     setUrn(submittedUrn);
     setShowWidget(true);
   };
-
-  return (
-    <div className="min-h-screen bg-gray-50">
+  return <div className="min-h-screen bg-gray-50">
       <header className="border-b border-gray-200 py-4 bg-white">
         <div className="container mx-auto px-4">
           <VfsLogo />
@@ -27,9 +22,7 @@ const Index = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div className="flex flex-col">
-            <h1 className="font-semibold text-gray-800 mb-4 text-xl">
-              Bank account verification for seamless Visa processing in Malta
-            </h1>
+            <h1 className="font-semibold text-gray-800 mb-4 text-xl">Bank account verification for seamless Visa processing for Belgium</h1>
 
             <p className="text-gray-600 mb-6 text-justify leading-relaxed">
               To ensure a seamless Visa processing experience and reduce the risk of financial discrepancies, 
@@ -72,16 +65,13 @@ const Index = () => {
           
           <div className="flex flex-col items-center">
             <div className="w-full max-w-md p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
-              {!showWidget ? (
-                <>
+              {!showWidget ? <>
                   <h2 className="font-medium text-gray-800 mb-4 text-lg">Enter your URN</h2>
                   <p className="text-gray-600 mb-6 text-sm leading-relaxed">
                     Please enter your Unique Reference Number (URN) to proceed with the verification process.
                   </p>
                   <UrnForm onSubmit={handleUrnSubmit} />
-                </>
-              ) : (
-                <>
+                </> : <>
                   <h2 className="font-medium text-gray-800 mb-4 text-lg">Select your provider</h2>
                   <p className="text-gray-600 mb-6 text-sm leading-relaxed">
                     Please select your country and enter your provider to proceed with the verification process.
@@ -89,8 +79,7 @@ const Index = () => {
                   <div className="flex flex-col align-center gap-4">
                     <WidgetCapture urn={urn} />
                   </div>
-                </>
-              )}
+                </>}
             </div>
           </div>
 
@@ -99,8 +88,6 @@ const Index = () => {
           </div>
         </div>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
