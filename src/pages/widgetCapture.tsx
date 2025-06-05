@@ -162,7 +162,7 @@ const WidgetDemo = forwardRef<WidgetRefMethods, WidgetCaptureProps>(({ urn }, re
           className="diro-widget"
           id={`diro-widget-container-${containerKey}`}
           ref={containerRef}
-          style={{ display: isWidgetLoaded ? "block" : "none", minHeight: "200px" }}
+          style={{ display: isWidgetLoaded ? "block" : "none", minHeight: "120px" }}
         />
       </div>
     </React.Fragment>
