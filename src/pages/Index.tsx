@@ -53,7 +53,7 @@ const Index = () => {
               <a href="#" className="text-vfs-blue hover:underline font-medium">
                 DIRO
               </a>{" "}
-              for this process, the leading provider of bank verification solutions trusted by F500 and 
+              for this process, the leading provider of bank verification solutions trusted by various governments, F500 and 
               Tier 1 global banks. Visit DIRO{" "}
               <a href="#" className="text-vfs-blue hover:underline font-medium">
                 Trust Center
