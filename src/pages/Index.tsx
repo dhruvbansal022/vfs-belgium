@@ -10,7 +10,7 @@ const Index = () => {
   const [urn, setUrn] = useState("");
 
   const handleUrnSubmit = (submittedUrn: string) => {
-    // Save URN to storage
+    console.log("URN submitted:", submittedUrn);
     sessionStorage.setItem("userUrn", submittedUrn);
     setUrn(submittedUrn);
     setShowWidget(true);
