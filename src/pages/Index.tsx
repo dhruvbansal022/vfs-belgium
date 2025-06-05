@@ -1,18 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import VfsLogo from "../components/VfsLogo";
 import UrnForm from "../components/UrnForm";
 import FaqAccordion from "../components/FaqAccordion";
 import WidgetCapture from "./widgetCapture";
+
 const Index = () => {
+  const [searchParams] = useSearchParams();
   const [showWidget, setShowWidget] = useState(false);
   const [urn, setUrn] = useState("");
+
+  useEffect(() => {
+    // Check for URN parameter in URL
+    const urlUrn = searchParams.get("URN");
+    if (urlUrn && urlUrn.trim()) {
+      console.log("URN from URL:", urlUrn);
+      sessionStorage.setItem("userUrn", urlUrn);
+      setUrn(urlUrn);
+      setShowWidget(true);
+    }
+  }, [searchParams]);
+
   const handleUrnSubmit = (submittedUrn: string) => {
     console.log("URN submitted:", submittedUrn);
     sessionStorage.setItem("userUrn", submittedUrn);
     setUrn(submittedUrn);
     setShowWidget(true);
   };
-  return <div className="min-h-screen bg-gray-50">
+
+  return (
+    <div className="min-h-screen bg-gray-50">
       <header className="border-b border-gray-200 py-4 bg-white">
         <div className="container mx-auto px-4">
           <VfsLogo />
@@ -65,19 +82,23 @@ const Index = () => {
           
           <div className="flex flex-col items-center">
             <div className="w-full max-w-md p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
-              {!showWidget ? <>
+              {!showWidget ? (
+                <>
                   <h2 className="font-medium text-gray-800 mb-4 text-lg">Enter your URN</h2>
                   <p className="text-gray-600 mb-6 text-sm leading-relaxed">
                     Please enter your Unique Reference Number (URN) to proceed with the verification process.
                   </p>
                   <UrnForm onSubmit={handleUrnSubmit} />
-                </> : <>
+                </>
+              ) : (
+                <>
                   <h2 className="font-medium text-gray-800 mb-4 text-lg">Select your provider</h2>
                   <p className="text-gray-600 mb-6 text-sm leading-relaxed">Please select your bank to proceed with the verification process.</p>
                   <div className="flex flex-col align-center gap-4">
                     <WidgetCapture urn={urn} />
                   </div>
-                </>}
+                </>
+              )}
             </div>
           </div>
 
@@ -86,6 +107,8 @@ const Index = () => {
           </div>
         </div>
       </main>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
