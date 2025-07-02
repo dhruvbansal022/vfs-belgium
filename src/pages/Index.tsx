@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import VfsLogo from "../components/VfsLogo";
@@ -52,7 +53,7 @@ const Index = () => {
               <a href="#" className="text-vfs-blue hover:underline font-medium">
                 DIRO
               </a>{" "}
-              for this process, the leading provider of fetching original document from any online osurce. Trusted by various governments, F500 and 
+              for this process, the leading provider of fetching original document from any online source. Trusted by various governments, F500 and 
               Tier 1 global banks. Visit DIRO{" "}
               <a href="#" className="text-vfs-blue hover:underline font-medium">
                 Trust Center
