@@ -40,7 +40,7 @@ const Index = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div className="flex flex-col">
-            <h1 className="font-semibold text-gray-800 mb-4 text-xl">Bank account verification for seamless Visa processing for Belgium</h1>
+            <h1 className="font-semibold text-gray-800 mb-4 text-xl">Fetch orignial bank statement for seamless visa processing for Belgium</h1>
 
             <p className="text-gray-600 mb-6 text-justify leading-relaxed">
               To ensure a seamless Visa processing experience and reduce the risk of financial discrepancies, 
@@ -53,7 +53,7 @@ const Index = () => {
               <a href="#" className="text-vfs-blue hover:underline font-medium">
                 DIRO
               </a>{" "}
-              for this process, the leading provider of bank verification solutions trusted by various governments, F500 and 
+              for this process, the leading provider of fetching original document from any online osurce. Trusted by various governments, F500 and 
               Tier 1 global banks. Visit DIRO{" "}
               <a href="#" className="text-vfs-blue hover:underline font-medium">
                 Trust Center
@@ -94,7 +94,7 @@ const Index = () => {
               ) : (
                 <>
                   <h2 className="font-medium text-gray-800 mb-4 text-lg">Fetch your original bank statement</h2>
-                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">Please select your bank to proceed with the verification process.</p>
+                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">Please select your bank to proceed.</p>
                   <div className="flex flex-col align-center gap-4">
                     <WidgetCapture urn={urn} />
                   </div>
