@@ -121,5 +121,8 @@
 .widget-App > div{
   width: -webkit-fill-available !important;
 }
+.uploader-col > div {
+  margin: auto !important;
+}
 
 
