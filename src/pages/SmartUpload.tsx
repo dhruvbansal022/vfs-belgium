@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import VfsLogo from "../components/VfsLogo";
 import UrnForm from "../components/UrnForm";
+import FaqAccordion from "../components/FaqAccordion";
 import SmartUploadWidget from "./smartUploadWidget";
 
 const SmartUpload = () => {
@@ -36,7 +37,7 @@ const SmartUpload = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           <div className="flex flex-col">
             <h1 className="font-semibold text-gray-800 mb-4 text-xl">Fetch original bank statements for seamless visa processing for Belgium</h1>
 
@@ -80,7 +81,7 @@ const SmartUpload = () => {
           </div>
           
           <div className="flex flex-col items-center">
-            <div className="w-full max-w-2xl p-6 border border-gray-200 rounded-lg shadow-sm bg-white min-h-[600px]">
+            <div className="w-full max-w-md p-6 border border-gray-200 rounded-lg shadow-sm bg-white min-h-[500px]">
               {!showWidget ? (
                 <>
                   <h2 className="font-medium text-gray-800 mb-4 text-lg">Enter your URN</h2>
@@ -99,6 +100,10 @@ const SmartUpload = () => {
                 </>
               )}
             </div>
+          </div>
+
+          <div>
+            <FaqAccordion />
           </div>
         </div>
       </main>
