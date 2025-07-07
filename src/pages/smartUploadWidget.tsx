@@ -62,7 +62,7 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
 
   const wrapperConfig = {
     height: "380px",
-    width: "500px",
+    width: "350px",
     themeColor: "black",
     fontFamily: "Montserrat",
     fontSize: "12px"
