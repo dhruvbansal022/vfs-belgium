@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import VfsLogo from "../components/VfsLogo";
 import UrnForm from "../components/UrnForm";
 import FaqAccordion from "../components/FaqAccordion";
-import WidgetCapture from "./widgetCapture";
+import SmartUploadWidget from "./smartUploadWidget";
 
 const SmartUpload = () => {
   const [searchParams] = useSearchParams();
@@ -95,7 +95,7 @@ const SmartUpload = () => {
                   <h2 className="font-medium text-gray-800 mb-4 text-lg">Fetch your original bank statement</h2>
                   <p className="text-gray-600 mb-6 text-sm leading-relaxed">Please select your bank to proceed.</p>
                   <div className="flex flex-col align-center gap-4">
-                    <WidgetCapture urn={urn} />
+                    <SmartUploadWidget urn={urn} />
                   </div>
                 </>
               )}
