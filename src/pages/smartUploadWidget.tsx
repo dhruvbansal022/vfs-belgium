@@ -82,7 +82,7 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
   }, [containerKey]);
 
   const wrapperConfig = {
-    height: "300px",
+    height: "500px",
     width: "100%",
     themeColor: "black",
     fontFamily: "Montserrat",
@@ -104,7 +104,7 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
           {...({ wrapper: JSON.stringify(wrapperConfig) } as any)}
           style={{ 
             display: isWidgetLoaded ? "block" : "none",
-            height: "300px",
+            height: "500px",
             width: "100%",
             maxWidth: "100%",
             overflow: "hidden",
