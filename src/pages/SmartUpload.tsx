@@ -93,7 +93,7 @@ const SmartUpload = () => {
             </div>
           </div>
 
-          <div>
+          <div >
             <FaqAccordion />
           </div>
         </div>
