@@ -37,8 +37,8 @@ const SmartUpload = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="flex flex-col">
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex flex-col lg:w-1/3">
             <h1 className="font-semibold text-gray-800 mb-4 text-xl">Fetch original bank statements for seamless visa processing for Belgium</h1>
 
             <p className="text-gray-600 mb-6 text-justify leading-relaxed">
@@ -80,7 +80,7 @@ const SmartUpload = () => {
             </div>
           </div>
           
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center lg:flex-1">
             <div className="w-full max-w-md p-6 border border-gray-200 rounded-lg shadow-sm bg-white min-h-[500px]">
               {!showWidget ? (
                 <>
@@ -102,7 +102,7 @@ const SmartUpload = () => {
             </div>
           </div>
 
-          <div>
+          <div className="lg:w-80 flex-shrink-0">
             <FaqAccordion />
           </div>
         </div>
