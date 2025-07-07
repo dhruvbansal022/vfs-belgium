@@ -61,8 +61,8 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
   }, [containerKey]);
 
   const wrapperConfig = {
-    height: "380px",
-    width: "500px",
+    height: "350px",
+    width: "100%",
     themeColor: "black",
     fontFamily: "Montserrat",
     fontSize: "12px"
@@ -74,7 +74,7 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
         <div className="widget-loading p-4 text-center">Loading Diro widget...</div>
       )}
 
-      <div className="w-full flex justify-center">
+      <div className="w-full">
         <div
           key={`smart-upload-widget-${containerKey}`}
           id="reactWidget"
@@ -83,9 +83,11 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
           {...({ wrapper: JSON.stringify(wrapperConfig) } as any)}
           style={{ 
             display: isWidgetLoaded ? "block" : "none",
-            minHeight: "120px",
+            minHeight: "350px",
             width: "100%",
-            maxWidth: "500px"
+            maxWidth: "100%",
+            overflow: "hidden",
+            position: "relative"
           }}
         />
       </div>
