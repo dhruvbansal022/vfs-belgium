@@ -15,14 +15,6 @@ const FaqAccordion = () => {
           </AccordionContent>
         </AccordionItem>
         
-        <AccordionItem value="item-2">
-          <AccordionTrigger className="text-left font-medium">How does my password remain private?</AccordionTrigger>
-          <AccordionContent className="text-gray-600 leading-relaxed">
-            Your banking passwords and credentials are never stored or accessed by VFS Global. DIRO's secure 
-            verification process uses bank-level encryption and connects directly with your financial institution 
-            without exposing your login credentials.
-          </AccordionContent>
-        </AccordionItem>
         
         <AccordionItem value="item-3">
           <AccordionTrigger className="text-left font-medium">Why should I trust DIRO?</AccordionTrigger>
