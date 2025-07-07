@@ -81,7 +81,7 @@ const SmartUpload = () => {
           </div>
           
           <div className="flex flex-col items-center">
-            <div className="w-full max-w-md p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+            <div className="w-full max-w-md p-6 border border-gray-200 rounded-lg shadow-sm bg-white min-h-[500px]">
               {!showWidget ? (
                 <>
                   <h2 className="font-medium text-gray-800 mb-4 text-lg">Enter your URN</h2>

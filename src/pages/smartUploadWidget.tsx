@@ -58,10 +58,31 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
 
   useEffect(() => {
     loadWidget();
+    
+    // Add custom CSS to constrain widget content
+    const style = document.createElement('style');
+    style.textContent = `
+      #reactWidget * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      #reactWidget iframe {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      // Cleanup style when component unmounts
+      if (style.parentNode) {
+        style.parentNode.removeChild(style);
+      }
+    };
   }, [containerKey]);
 
   const wrapperConfig = {
-    height: "350px",
+    height: "300px",
     width: "100%",
     themeColor: "black",
     fontFamily: "Montserrat",
@@ -74,7 +95,7 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
         <div className="widget-loading p-4 text-center">Loading Diro widget...</div>
       )}
 
-      <div className="w-full">
+      <div className="w-full" style={{ maxWidth: "100%", overflow: "hidden" }}>
         <div
           key={`smart-upload-widget-${containerKey}`}
           id="reactWidget"
@@ -83,11 +104,13 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
           {...({ wrapper: JSON.stringify(wrapperConfig) } as any)}
           style={{ 
             display: isWidgetLoaded ? "block" : "none",
-            minHeight: "350px",
+            height: "300px",
             width: "100%",
             maxWidth: "100%",
             overflow: "hidden",
-            position: "relative"
+            position: "relative",
+            border: "1px solid #e5e7eb",
+            borderRadius: "8px"
           }}
         />
       </div>
