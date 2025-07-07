@@ -113,3 +113,11 @@
   display: flex;
   flex-direction: column;
 }
+
+.widget-App-styles{
+  width: 100% !important;
+}
+
+.widget-App > div{
+  width: -webkit-fill-available !important;
+}
