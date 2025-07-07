@@ -1,31 +1,4 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle, useState } from "react";
-import "../../stylesSelectLink.css";
-
-// Define types for the widget instance
-interface WidgetInstance {
-  update: (data: any) => void;
-  destroy?: () => void;
-}
-
-// Define types for the widget initialization options
-interface WidgetOptions {
-  targetUrl: string;
-  buttonText: string;
-  allowRedirection: boolean;
-  openWith: string;
-  containerStyles: {
-    backgroundColor: string;
-    padding: string;
-    borderRadius: string;
-  };
-  buttonStyles: {
-    fontSize: string;
-    borderRadius: string;
-    width: string;
-  };
-  containerClassName?: string;
-  buttonClassName?: string;
-}
 
 interface WidgetRefMethods {
   updateWidget: (data: any) => void;
@@ -37,131 +10,83 @@ interface SmartUploadWidgetProps {
 }
 
 const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>(({ urn }, ref) => {
-  const [containerKey, setContainerKey] = useState<number>(0);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const widgetInstance = useRef<WidgetInstance | null>(null);
   const [isWidgetLoaded, setIsWidgetLoaded] = useState<boolean>(false);
+  const [containerKey, setContainerKey] = useState<number>(0);
   const hasInitialized = useRef<boolean>(false);
 
   useImperativeHandle(ref, () => ({
     updateWidget: (data: any) => {
-      if (widgetInstance.current) {
-        widgetInstance.current.update(data);
-      }
+      // Widget will reinitialize automatically when URN changes
     },
     reinitialize: () => {
-      cleanup();
       setContainerKey((prev) => prev + 1);
       hasInitialized.current = false;
       setTimeout(() => {
-        initializeWidgetProcess();
+        loadWidget();
       }, 100);
     },
   }));
 
-  const cleanup = (): void => {
-    if (widgetInstance.current && widgetInstance.current.destroy) {
-      try {
-        widgetInstance.current.destroy();
-      } catch (e) {
-        console.error("Error destroying widget:", e);
-      }
-      widgetInstance.current = null;
-      setIsWidgetLoaded(false);
-    }
-  };
-
-  useEffect(() => {
-    return cleanup;
-  }, []);
-
-  const initializeWidgetProcess = (): (() => void) | void => {
+  const loadWidget = () => {
     if (hasInitialized.current) return;
 
-    if (typeof (window as any).initializeDiroWidget === "function") {
-      initializeWidget();
-      hasInitialized.current = true;
+    // Load CSS if not already loaded
+    if (!document.querySelector('link[href="https://smartupload.diro.io/widgets/diro.css"]')) {
+      const cssLink = document.createElement('link');
+      cssLink.rel = 'stylesheet';
+      cssLink.href = 'https://smartupload.diro.io/widgets/diro.css';
+      document.head.appendChild(cssLink);
+    }
+
+    // Load JS if not already loaded
+    if (!document.querySelector('script[src="https://smartupload.diro.io/widgets/diro.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://smartupload.diro.io/widgets/diro.js';
+      script.onload = () => {
+        setIsWidgetLoaded(true);
+        hasInitialized.current = true;
+      };
+      script.onerror = () => {
+        console.error('Failed to load Diro widget script');
+      };
+      document.head.appendChild(script);
     } else {
-      const checkInterval = setInterval(() => {
-        if (typeof (window as any).initializeDiroWidget === "function") {
-          initializeWidget();
-          hasInitialized.current = true;
-          clearInterval(checkInterval);
-        }
-      }, 200);
-
-      setTimeout(() => clearInterval(checkInterval), 10000);
-
-      return () => clearInterval(checkInterval);
+      setIsWidgetLoaded(true);
+      hasInitialized.current = true;
     }
   };
 
   useEffect(() => {
-    const timer = setTimeout(initializeWidgetProcess, 300);
-    return () => clearTimeout(timer);
+    loadWidget();
   }, [containerKey]);
 
-  const initializeWidget = (): void => {
-    if (!containerRef.current || widgetInstance.current) return;
-
-    try {
-      const widgetContainer = document.createElement("div");
-      widgetContainer.id = `diro-widget-inner-smart-${containerKey}`;
-
-      if (containerRef.current) {
-        containerRef.current.innerHTML = "";
-        containerRef.current.appendChild(widgetContainer);
-      }
-
-      const targetUrl = urn
-        ? `https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-48sB&trackid=${urn}`
-        : "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-48sB&trackid=";
-
-      (window as any).initializeDiroWidget(widgetContainer, {
-        targetUrl: targetUrl,
-        allowRedirection: true,
-        buttonText: "Start verification",
-        openWith: "sametab",
-        containerStyles: {
-          backgroundColor: "#ffffff",
-          padding: "20px",
-          borderRadius: "12px"
-        },
-        buttonStyles: {
-          fontSize: "16px",
-          borderRadius: "12px",
-          width: "webkit",
-        },
-      });
-
-      // Create a minimal instance since the function doesn't return one
-      widgetInstance.current = {
-        update: () => {},
-        destroy: () => {
-          if (widgetContainer.parentNode) {
-            widgetContainer.parentNode.removeChild(widgetContainer);
-          }
-        },
-      };
-
-      setIsWidgetLoaded(true);
-    } catch (error) {
-      console.error("Error initializing Diro widget:", error);
-      hasInitialized.current = false;
-    }
+  const wrapperConfig = {
+    height: "380px",
+    width: "500px",
+    themeColor: "black",
+    fontFamily: "Montserrat",
+    fontSize: "12px"
   };
 
   return (
     <React.Fragment>
-      {!isWidgetLoaded && <div className="widget-loading p-4 text-center">Loading Diro widget...</div>}
+      {!isWidgetLoaded && (
+        <div className="widget-loading p-4 text-center">Loading Diro widget...</div>
+      )}
 
-      <div className="w-full">
+      <div className="w-full flex justify-center">
         <div
-          key={`diro-container-smart-${containerKey}`}
-          className="diro-widget"
-          id={`diro-widget-container-smart-${containerKey}`}
-          ref={containerRef}
-          style={{ display: isWidgetLoaded ? "block" : "none", minHeight: "120px" }}
+          key={`smart-upload-widget-${containerKey}`}
+          id="reactWidget"
+          data-buttonid="O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-h3rO"
+          data-trackid={urn || ""}
+          {...({ wrapper: JSON.stringify(wrapperConfig) } as any)}
+          style={{ 
+            display: isWidgetLoaded ? "block" : "none",
+            minHeight: "120px",
+            width: "100%",
+            maxWidth: "500px"
+          }}
         />
       </div>
     </React.Fragment>
