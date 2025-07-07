@@ -114,13 +114,6 @@
   flex-direction: column;
 }
 
-.widget-App-styles{
-  width: 100% !important;
-}
-
-.widget-App > div{
-  width: -webkit-fill-available !important;
-}
 .uploader-col > div {
   margin: auto !important;
 }
