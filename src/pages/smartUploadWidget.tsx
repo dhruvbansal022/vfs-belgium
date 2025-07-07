@@ -33,14 +33,14 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
   const loadCSS = (): Promise<void> => {
     return new Promise((resolve) => {
       // Check if CSS is already loaded
-      if (document.querySelector('link[href="https://smartupload.diro.io/widgets/diro.css"]')) {
+      if (document.querySelector('link[href="https://smartupload.diro.io/widgets-stage2/diro.css"]')) {
         resolve();
         return;
       }
 
       const cssLink = document.createElement("link");
       cssLink.rel = "stylesheet";
-      cssLink.href = "https://smartupload.diro.io/widgets/diro.css";
+      cssLink.href = "https://smartupload.diro.io/widgets-stage2/diro.css";
       cssLink.onload = () => resolve();
       cssLink.onerror = () => {
         console.error("Failed to load Diro widget CSS");
@@ -140,7 +140,7 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
             display: isWidgetLoaded ? "block" : "none",
             minHeight: "120px",
             width: "100%",
-            maxWidth: "350px",
+            maxWidth: "300px",
             backgroundColor: "white",
             borderRadius: "10px",
             padding: "10px",
