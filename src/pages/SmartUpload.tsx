@@ -39,7 +39,7 @@ const SmartUpload = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div className="flex flex-col">
-            <h1 className="font-semibold text-gray-800 mb-4 text-xl">Fetch original bank statements for seamless visa processing for Belgium</h1>
+            <h1 className="font-semibold text-gray-800 mb-4 text-xl">Verify bank statements for seamless visa processing for Belgium</h1>
 
             <p className="text-gray-600 mb-6 text-justify leading-relaxed">
               To ensure a seamless Visa processing experience and reduce the risk of financial discrepancies, 
