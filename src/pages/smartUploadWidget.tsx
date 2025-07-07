@@ -83,7 +83,7 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
     widgetDiv.setAttribute("data-trackid", urn || "");
     widgetDiv.setAttribute(
       "wrapper",
-      '{ "height": "350px", "width": "-webkit-fill-available", "themeColor":"black", "fontFamily":"Montserrat", "fontSize":"12px" }'
+      '{ "height": "350px", "width": "350px", "themeColor":"black", "fontFamily":"Montserrat", "fontSize":"12px" }'
     );
 
     // Append the widget div to the container
@@ -140,7 +140,7 @@ const SmartUploadWidget = forwardRef<WidgetRefMethods, SmartUploadWidgetProps>((
             display: isWidgetLoaded ? "block" : "none",
             minHeight: "120px",
             width: "100%",
-            maxWidth: "-webkit-fill-available",
+            maxWidth: "350px",
             backgroundColor: "white",
             borderRadius: "10px",
             padding: "10px",
