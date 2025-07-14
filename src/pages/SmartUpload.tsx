@@ -84,7 +84,7 @@ const SmartUpload = () => {
                   </p>
                   <UrnForm onSubmit={handleUrnSubmit} />
                 </> : <>
-                  <h2 className="font-medium text-gray-800 mb-4 text-lg">Verify your bank statement</h2>
+                  
                   
                   <div className="flex flex-col align-center gap-4">
                     <SmartUploadWidget urn={urn} />
