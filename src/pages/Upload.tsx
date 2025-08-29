@@ -3,7 +3,6 @@ import { useSearchParams } from "react-router-dom";
 import VfsLogo from "../components/VfsLogo";
 import UrnForm from "../components/UrnForm";
 import FaqAccordion from "../components/FaqAccordion";
-import WidgetCapture from "./widgetCapture";
 
 const Upload = () => {
   const [searchParams] = useSearchParams();
@@ -92,10 +91,17 @@ const Upload = () => {
                 </>
               ) : (
                 <>
-                  <h2 className="font-medium text-gray-800 mb-4 text-lg">Fetch your original bank statement</h2>
-                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">Please select your bank to proceed.</p>
-                  <div className="flex flex-col align-center gap-4">
-                    <WidgetCapture urn={urn} />
+                  <h2 className="font-medium text-gray-800 mb-4 text-lg">Upload your bank statement</h2>
+                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">Drag and drop your PDF file or click to browse.</p>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition-colors cursor-pointer">
+                    <div className="text-gray-500">
+                      <svg className="mx-auto h-12 w-12 mb-4" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <p className="text-sm">Drop your PDF here or click to upload</p>
+                      <p className="text-xs text-gray-400 mt-1">PDF files only</p>
+                    </div>
+                    <input type="file" accept=".pdf" className="hidden" />
                   </div>
                 </>
               )}
