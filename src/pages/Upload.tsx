@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Upload as UploadIcon } from "lucide-react";
 import VfsLogo from "../components/VfsLogo";
 import UrnForm from "../components/UrnForm";
 import FaqAccordion from "../components/FaqAccordion";
@@ -8,6 +9,8 @@ const Upload = () => {
   const [searchParams] = useSearchParams();
   const [showWidget, setShowWidget] = useState(false);
   const [urn, setUrn] = useState("");
+  const [isDragOver, setIsDragOver] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   useEffect(() => {
     // Check for URN parameter in URL
@@ -25,6 +28,47 @@ const Upload = () => {
     sessionStorage.setItem("userUrn", submittedUrn);
     setUrn(submittedUrn);
     setShowWidget(true);
+  };
+
+  const handleFileSelect = (file: File) => {
+    if (file.type === "application/pdf") {
+      setSelectedFile(file);
+      console.log("File selected:", file.name);
+    } else {
+      alert("Please select a PDF file");
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      handleFileSelect(files[0]);
+    }
+  };
+
+  const handleClick = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".pdf";
+    input.onchange = (e) => {
+      const target = e.target as HTMLInputElement;
+      if (target.files && target.files.length > 0) {
+        handleFileSelect(target.files[0]);
+      }
+    };
+    input.click();
   };
 
   return (
@@ -91,17 +135,47 @@ const Upload = () => {
                 </>
               ) : (
                 <>
-                  <h2 className="font-medium text-gray-800 mb-4 text-lg">Upload your bank statement</h2>
-                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">Drag and drop your PDF file or click to browse.</p>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition-colors cursor-pointer">
-                    <div className="text-gray-500">
-                      <svg className="mx-auto h-12 w-12 mb-4" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      <p className="text-sm">Drop your PDF here or click to upload</p>
-                      <p className="text-xs text-gray-400 mt-1">PDF files only</p>
+                  <h2 className="font-medium text-gray-800 mb-6 text-lg">Upload Bank Statement</h2>
+                  
+                  <div 
+                    className={`relative border-2 border-dashed rounded-xl p-12 text-center transition-all cursor-pointer ${
+                      isDragOver 
+                        ? "border-blue-400 bg-blue-50" 
+                        : selectedFile 
+                          ? "border-green-400 bg-green-50" 
+                          : "border-gray-300 hover:border-gray-400 hover:bg-gray-50"
+                    }`}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    onClick={handleClick}
+                  >
+                    <div className="flex flex-col items-center space-y-4">
+                      <UploadIcon 
+                        size={40} 
+                        className={`${
+                          isDragOver 
+                            ? "text-blue-500" 
+                            : selectedFile 
+                              ? "text-green-500" 
+                              : "text-gray-400"
+                        }`} 
+                      />
+                      
+                      {selectedFile ? (
+                        <div className="space-y-2">
+                          <p className="font-medium text-green-700">{selectedFile.name}</p>
+                          <p className="text-sm text-green-600">File ready for upload</p>
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          <p className="font-medium text-gray-700">
+                            {isDragOver ? "Drop your PDF here" : "Drop PDF here or click to browse"}
+                          </p>
+                          <p className="text-sm text-gray-500">PDF files only, max 10MB</p>
+                        </div>
+                      )}
                     </div>
-                    <input type="file" accept=".pdf" className="hidden" />
                   </div>
                 </>
               )}
