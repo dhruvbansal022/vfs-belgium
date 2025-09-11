@@ -32,12 +32,12 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="border-b border-gray-200 py-4 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8">
           <VfsLogo />
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-8 py-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div className="flex flex-col">
             <h1 className="font-semibold text-gray-800 mb-4 text-xl">Fetch original bank statements for seamless visa processing for Belgium</h1>
