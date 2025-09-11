@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import VfsLogo from "../components/VfsLogo";
 import UrnForm from "../components/UrnForm";
 import FaqAccordion from "../components/FaqAccordion";
-import SmartUploadWidget from "./smartUploadWidget";
+import DiroWidget from "../components/DiroWidget";
 
 const Upload = () => {
   const [searchParams] = useSearchParams();
@@ -93,7 +93,7 @@ const Upload = () => {
               ) : (
                 <>
                   <div className="flex flex-col align-center gap-4">
-                    <SmartUploadWidget urn={urn} />
+                    <DiroWidget urn={urn} />
                   </div>
                 </>
               )}
