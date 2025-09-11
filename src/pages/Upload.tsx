@@ -92,7 +92,7 @@ const Upload = () => {
                 </>
               ) : (
                 <>
-                  <div className="flex flex-col align-center gap-4">
+                  <div className="flex flex-col items-center justify-center gap-4 min-h-[200px]">
                     <DiroWidget urn={urn} />
                   </div>
                 </>
