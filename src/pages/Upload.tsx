@@ -37,7 +37,7 @@ const Upload = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-[1fr_auto_1fr] gap-8 items-start">
           <div className="flex flex-col">
             <h1 className="font-semibold text-gray-800 mb-4 text-xl">Verify bank statements for seamless visa processing for Belgium</h1>
 
@@ -80,7 +80,7 @@ const Upload = () => {
             </div>
           </div>
           
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center justify-center min-w-[400px]">
             <div className="w-full max-w-md p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
               {!showWidget ? (
                 <>
@@ -100,7 +100,7 @@ const Upload = () => {
             </div>
           </div>
 
-          <div>
+          <div className="flex flex-col">
             <FaqAccordion />
           </div>
         </div>
