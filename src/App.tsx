@@ -8,7 +8,6 @@ import Index from "./pages/Index";
 import VerificationResult from "./pages/VerificationResult";
 import SmartUpload from "./pages/SmartUpload";
 import Upload from "./pages/Upload";
-import AddressPage from "./pages/AddressPage";
 import NotFound from "./pages/NotFound";
 // We will not import the App.css file as it may be causing styling conflicts
 
@@ -25,7 +24,6 @@ const App = () => (
           <Route path="/verification-result" element={<VerificationResult />} />
           <Route path="/smart-upload" element={<SmartUpload />} />
           <Route path="/upload" element={<Upload />} />
-          <Route path="/address" element={<AddressPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
