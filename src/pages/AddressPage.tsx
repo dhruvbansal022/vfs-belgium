@@ -39,12 +39,12 @@ const AddressPage = () => {
       <main className="container mx-auto px-8 py-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div className="flex flex-col">
-            <h1 className="font-semibold text-gray-800 mb-4 text-xl">Fetch original bank statements for seamless visa processing for Belgium</h1>
+            <h1 className="font-semibold text-gray-800 mb-4 text-xl">Fetch original utility statements for seamless visa processing for Belgium</h1>
 
             <p className="text-gray-600 mb-6 text-justify leading-relaxed">
               To ensure a seamless Visa processing experience and reduce the risk of financial discrepancies, 
-              VFS Global requires applicants to verify their bank account statement. This step guarantees 
-              timely and accurate financial transactions related to your Visa application.
+              VFS Global requires applicants to verify their utility statement. This step guarantees 
+              timely and accurate information related to your Visa application.
             </p>
 
             <p className="text-gray-600 mb-6 text-justify leading-relaxed">
@@ -63,8 +63,8 @@ const AddressPage = () => {
             <div className="mt-auto">
               <p className="text-gray-600 mb-4">
                 Learn more about DIRO's{" "}
-                <a href="#" className="text-vfs-blue hover:underline font-medium">
-                  bank
+                <a href="https://diro.io/products/address-verification/" className="text-vfs-blue hover:underline font-medium">
+                  address
                 </a>{" "}
                 verification solutions.
               </p>
