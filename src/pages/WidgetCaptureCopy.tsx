@@ -114,8 +114,8 @@ const WidgetCaptureCopy = forwardRef<WidgetRefMethods, WidgetCaptureCopyProps>((
       }
 
       const targetUrl = urn
-        ? `https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-kDKd&trackid=${urn}`
-        : "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-kDKd&trackid=";
+        ? `https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-kDKd&trackid=${urn}&instruction=Download your utility statement
+        : "https://verification.diro.io/?buttonid=O.c117bd44-8cfa-42df-99df-c4ad2ba6c6f5-kDKd&trackid=&instruction=Download your utility statement";
 
       (window as any).initializeDiroWidget(widgetContainer, {
         targetUrl: targetUrl,
